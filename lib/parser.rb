@@ -15,6 +15,18 @@ class Parser
                .split(' ')
   end
 
+  # Public: Parses a set of Lisp tokens (see #tokenize)
+  #
+  # tokens - the array of Lisp tokens to parse
+  # tree - the AST that will be eventually returned (used for recuring)
+  #
+  # Examples
+  #
+  #   tokens = parser.tokenize('(define woot (* 3 2))')
+  #   parser.parse(tokens)
+  #   # => [ 'define', 'woot', ['*', '3', '2'] ]
+  #
+  # Returns the tokens as a parse tree according to the above specification
   def parse(tokens, tree=[])
     token = tokens.shift
     case token
@@ -24,6 +36,9 @@ class Parser
   end
 
   private
+  # Private: Parses a block of tokens until the block ends, recursively.
+  #
+  # See above (#parse(tokens, tree)) for more details.
   def parse_block(tokens, tree)
     tree.push(parse(tokens)) while tokens.first != ")"
     tokens.shift
