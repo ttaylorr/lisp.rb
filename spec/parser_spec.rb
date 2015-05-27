@@ -14,13 +14,13 @@ describe Parser do
     tokens = @p.tokenize("(define x 3)")
     ast = @p.parse(tokens)
 
-    expect(ast).to eql(["define", "x", "3"])
+    expect(ast).to eql([:define, :x, 3.0])
   end
 
   it "parses tokens that are nested into arrays" do
     tokens = @p.tokenize("(define x (* 2 3))")
     ast = @p.parse(tokens)
 
-    expect(ast).to eql(["define", "x", ["*", "2", "3"]])
+    expect(ast).to eql([:define, :x, [:*, 2.0, 3.0]])
   end
 end
