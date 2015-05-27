@@ -4,7 +4,7 @@ class Interpreter
   end
 
   def evaluate(expression)
-    return expression if expression.is_a? Fixnum
+    return expression if expression.is_a? Float
 
     case expression[0]
     when :define
