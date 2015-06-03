@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/parser.rb'
+require_relative '../lib/interpreter.rb'
+
+p, i = Parser.new, Interpreter.new
+
+loop { puts "=> " << i.evaluate(p.parse(p.tokenize(gets))).inspect }
