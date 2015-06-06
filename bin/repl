@@ -4,5 +4,6 @@ require_relative '../lib/parser.rb'
 require_relative '../lib/interpreter.rb'
 
 p, i = Parser.new, Interpreter.new
+times = 0
 
-loop { puts "=> " << i.evaluate(p.parse(p.tokenize(gets))).inspect }
+loop { puts "(#{times+=1})-> #{i.evaluate(p.parse(p.tokenize(gets))).inspect}" }
